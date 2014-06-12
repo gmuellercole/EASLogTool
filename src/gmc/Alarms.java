@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Alarms extends HashMap<Integer, Integer>{
+
+    // TODO: would be better if this was a enum
     static final int NoAlarm = 0x00; 
     static final int ServerExceptionAlarm = 0x01; 
     static final int NoServerResponseAlarm = 0x02;
