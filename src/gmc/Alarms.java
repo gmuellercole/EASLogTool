@@ -13,39 +13,7 @@ public class Alarms extends HashMap<Integer, Integer>{
     static final int NotSuccessAlarm = 0x10;
     static final int ConcurrentEntriesAlarm = 0x20;
     static final int NoStartTimeAlarm = 0x40;
-    
-    int add(int existingAlarms, int alarmToAdd){
-        Integer k = new Integer(alarmToAdd);
-        Integer currentCount = get(k);
-        if(currentCount == null){
-            currentCount = new Integer(0);
-        }
-        currentCount = new Integer(currentCount.intValue()+1);
-        put(k, currentCount);
         
-        return existingAlarms | alarmToAdd; 
-    }
-    
-    int remove(int existingAlarms, int alarmToRemove){
-        if((existingAlarms & alarmToRemove) != alarmToRemove)
-            return existingAlarms;
-        
-        Integer k = new Integer(alarmToRemove);
-        Integer currentCount = get(k);
-        assert currentCount != null; 
-        currentCount = new Integer(currentCount.intValue()-1);
-        put(k, currentCount);
-        
-        return existingAlarms & ~ alarmToRemove; 
-    }
-    
-    int countAlarms(Integer alarmKey){
-        Integer currentCount = get(alarmKey);
-        if(currentCount == null)
-            return 0;
-        return currentCount.intValue();
-    }
-    
     static List<Integer> getAlarms(){
         List<Integer>rv = new ArrayList<Integer>();
         rv.add(NoAlarm);
@@ -105,5 +73,37 @@ public class Alarms extends HashMap<Integer, Integer>{
         
         // multiple alarms!
         return '*';
+    }
+    
+    int add(int existingAlarms, int alarmToAdd){
+        Integer k = new Integer(alarmToAdd);
+        Integer currentCount = get(k);
+        if(currentCount == null){
+            currentCount = new Integer(0);
+        }
+        currentCount = new Integer(currentCount.intValue()+1);
+        put(k, currentCount);
+        
+        return existingAlarms | alarmToAdd; 
+    }
+    
+    int remove(int existingAlarms, int alarmToRemove){
+        if((existingAlarms & alarmToRemove) != alarmToRemove)
+            return existingAlarms;
+        
+        Integer k = new Integer(alarmToRemove);
+        Integer currentCount = get(k);
+        assert currentCount != null; 
+        currentCount = new Integer(currentCount.intValue()-1);
+        put(k, currentCount);
+        
+        return existingAlarms & ~ alarmToRemove; 
+    }
+    
+    int countAlarms(Integer alarmKey){
+        Integer currentCount = get(alarmKey);
+        if(currentCount == null)
+            return 0;
+        return currentCount.intValue();
     }
 }
