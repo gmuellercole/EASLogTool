@@ -5,11 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Alarms extends HashMap<Integer, Integer>{
-
+    private static final long serialVersionUID = 1L;
+    
     // TODO: would be better if this was a enum
     static final int NoAlarm = 0x00; 
-    static final int ServerExceptionAlarm = 0x01; 
-    static final int NoServerResponseAlarm = 0x02;
+    static final int NoServerResponseAlarm = 0x01;
+    static final int ServerExceptionAlarm = 0x02; 
     static final int HeadersChangedAlarm = 0x04;
     static final int PendingResponseAlarm = 0x08;
     static final int NotSuccessAlarm = 0x10;
